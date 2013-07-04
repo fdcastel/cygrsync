@@ -1,2 +1,1 @@
-@echo off
-cygrunsrv.exe --remove rsyncd
+@CALL rsync-server.cmd uninstall
