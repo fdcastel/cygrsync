@@ -12,14 +12,14 @@ FOR /f "eol=; tokens=* delims=" %%i IN ('cygpath.exe -u "%1"') DO (
 	SET CygwinFilename=%%i
 )
 
-rsync.exe --compress-level=9 --progress --human-readable "!CygwinFilename!" "%2::pub/"
+rsync.exe --compress-level=9 --progress --recursive --human-readable "!CygwinFilename!" %2
 GOTO :End
 
 
 :ShowUsage
 ECHO Send a file to remote server.
 ECHO.
-ECHO usage: %0 [local-file] [remote-server]
+ECHO usage: %0 [local-file] [remote-server] [extra-args]
 ECHO.
 ECHO where
 ECHO      local-file      file to send
