@@ -1,18 +1,12 @@
 @ECHO OFF
 SETLOCAL ENABLEDELAYEDEXPANSION
 
-IF "%2" EQU "" (
-	GOTO :ShowUsage
-) ELSE (
-	GOTO :Run
-)
+IF "%2" EQU "" GOTO :ShowUsage ELSE GOTO :Run
 
 :Run
-FOR /f "eol=; tokens=* delims=" %%i IN ('cygpath.exe -u "%1"') DO (
-	SET CygwinFilename=%%i
-)
-
-rsync.exe --compress-level=9 --progress --human-readable "!CygwinFilename!" %2 %*
+FOR /F "eol=; tokens=* delims=" %%i IN ('cygpath.exe -u "%1"') DO SET CygwinFilename=%%i
+FOR /F "usebackq tokens=1*" %%i IN (`echo %*`) DO SET ExtraArgs=%%j
+rsync.exe --compress-level=9 --progress --human-readable "!CygwinFilename!" !ExtraArgs!
 GOTO :End
 
 
