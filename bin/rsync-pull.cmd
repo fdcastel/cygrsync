@@ -5,9 +5,7 @@ IF "%2" EQU "" GOTO :ShowUsage ELSE GOTO :Run
 
 :Run
 FOR /F "eol=; tokens=* delims=" %%i IN ('cygpath.exe -u "%2"') DO SET CygwinFilename=%%i
-FOR /F "usebackq tokens=1,2*" %%i IN (`echo %*`) DO SET ExtraArgs=%%k
-
-rsync.exe --compress-level=9 --progress --human-readable "%1" "!CygwinFilename!" !ExtraArgs!
+rsync.exe --compress-level=9 --progress --human-readable "%1" "!CygwinFilename!" %3 %4 %5 %6 %7 %8 %9
 GOTO :End
 
 
