@@ -13,8 +13,12 @@ IF /I "%1" EQU "install" (
 
 
 :Install
-REM -- Add firewall rule
-CALL add-windows-firewall-rule.cmd > NUL
+REM -- Adds firewall rule
+SET FIREWALL_RULE_PORT=873
+SET FIREWALL_RULE_PROTOCOL=TCP
+SET FIREWALL_RULE_NAME=rsync Server Protocol (port 873/TCP)
+netsh advfirewall firewall delete rule name=all dir=in protocol=!FIREWALL_RULE_PROTOCOL! localport=!FIREWALL_RULE_PORT! > NUL
+netsh advfirewall firewall add rule name="!FIREWALL_RULE_NAME!" dir=in action=allow protocol=!FIREWALL_RULE_PROTOCOL! localport=!FIREWALL_RULE_PORT! > NUL
 
 REM -- Get /var current location
 SET ROOT_PATH=
