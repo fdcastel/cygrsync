@@ -1,1 +1,0 @@
-@CALL rsync-server.cmd uninstall
