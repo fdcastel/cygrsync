@@ -1,4 +1,4 @@
-FROM microsoft/windowsservercore:1709_KB4043961
+FROM mcr.microsoft.com/windows/servercore:1809
 
 COPY dist \cygrsync
 COPY run.ps1 \cygrsync
