@@ -4,7 +4,7 @@ rmdir /s/q .\dist
 robocopy /s ..\dist .\dist
 
 SET IMAGENAME=fdcastel/cygrsync
-SET IMAGEVERSION=3.1.2
+SET IMAGEVERSION=3.2.4
 
 docker build -t %IMAGENAME%:%IMAGEVERSION% .
 
